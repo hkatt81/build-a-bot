@@ -10,7 +10,7 @@
                     />
                     Build-a-Bot
                 </li>
-                <li>
+                <li class="user-name">
                     {{ user.userName }}
                     <button @click="changeUserName()">Change</button>
                 </li>
@@ -85,5 +85,10 @@ ul {
 .logo {
     vertical-align: middle;
     height: 30px;
+}
+.user-name {
+    height: auto;
+    margin: auto 32px;
+    list-style: none;
 }
 </style>
