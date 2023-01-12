@@ -10,6 +10,10 @@
                     />
                     Build-a-Bot
                 </li>
+                <li>
+                    {{ userName }}
+                    <button @click="changeUserName()">Change</button>
+                </li>
             </ul>
         </nav>
     </header>
@@ -39,6 +43,11 @@ export default {
     // Provides data to all child components
     provide() {
         return { userName: this.userName };
+    },
+    methods: {
+        changeUserName() {
+            this.userName = '©YO 2999';
+        },
     },
 };
 </script>
