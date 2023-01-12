@@ -1,6 +1,6 @@
 <template>
     <div class="part" :class="position">
-        <div class="copyright">Copyright: {{ userName }}</div>
+        <div class="copyright">{{ user.userName }}</div>
         <img :src="selectedPart.src" @click="showPartInfo= !showPartInfo" title="arm"/>
         <button @click="selectPreviousPart()" class="prev-selector"></button>
         <button @click="selectNextPart()" class="next-selector"></button>
@@ -33,7 +33,7 @@ function getNextValidIndex(index, length) {
 
 export default {
     // Inject receives data from parent provide, so can be used
-    inject: ['userName'],
+    inject: ['user'],
     props: {
         parts: { type: Array, required: true },
         position: {

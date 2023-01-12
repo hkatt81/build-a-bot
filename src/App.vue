@@ -11,7 +11,7 @@
                     Build-a-Bot
                 </li>
                 <li>
-                    {{ userName }}
+                    {{ user.userName }}
                     <button @click="changeUserName()">Change</button>
                 </li>
             </ul>
@@ -36,17 +36,17 @@ export default {
     },
     data() {
         return {
-            userName: '©HM 2023',
+            user: { userName: '©HM 2023' },
         };
     },
     // Provide instead of props for deep nested components
     // Provides data to all child components
     provide() {
-        return { userName: this.userName };
+        return { user: this.user };
     },
     methods: {
         changeUserName() {
-            this.userName = '©YO 2999';
+            this.user.userName = '©YO 2999';
         },
     },
 };
