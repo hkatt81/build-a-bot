@@ -30,6 +30,12 @@ export default {
         RobotBuilder,
         // Search,
     },
+    // Provide instead of props for deep nested components
+    // Provides data to all child components
+    // Is not available to this component, use data() for that
+    provide: {
+        userName: '© HM',
+    },
 };
 </script>
 
