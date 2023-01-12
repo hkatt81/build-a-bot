@@ -74,6 +74,7 @@ export default {
             selectedBaseIndex: 0,
         };
     },
+    mixins: [createdHookMixin],
     computed: {
         selectedRobot() {
             return {
