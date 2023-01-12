@@ -45,6 +45,7 @@ export default {
         return { user: this.user };
     },
     methods: {
+        // Note this does not work if you create new object here
         changeUserName() {
             this.user.userName = '©YO 2999';
         },
