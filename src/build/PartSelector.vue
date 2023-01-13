@@ -1,18 +1,19 @@
 <template>
     <div class="part" :class="position">
         <div class="copyright">{{ user.userName }}</div>
-        <img :src="selectedPart.src" @click="showPartInfo= !showPartInfo" title="arm"/>
+        <img @click="showPartInfoPage()" :src="selectedPart.src" title="arm"/>
+        <!-- <img :src="selectedPart.src" @click="showPartInfo= !showPartInfo" title="arm"/> -->
         <button @click="selectPreviousPart()" class="prev-selector"></button>
         <button @click="selectNextPart()" class="next-selector"></button>
         <span class="sale" v-show="selectedPart.onSale">Sale!</span>
-        <teleport to="#part-info" v-if="showPartInfo">
+        <!-- <teleport to="#part-info" v-if="showPartInfo">
             <div>
                 <div>{{ selectedPart.cost }}  {{ selectedPart.title }}
                     {{ selectedPart.type }}</div>
                 <div>{{ selectedPart.description }}</div>
                 <hr>
             </div>
-        </teleport>
+        </teleport> -->
     </div>
   </template>
 
@@ -45,7 +46,9 @@ export default {
         },
     },
     data() {
-        return { selectedPartIndex: 0, showPartInfo: false };
+        return { selectedPartIndex: 0 };
+        // return { selectedPartIndex: 0, showPartInfo: false };
+        // showPartInfo is used with teleport to show element on screen
     },
     computed: {
         selectedPart() {
@@ -74,6 +77,19 @@ export default {
                 this.selectedPartIndex,
                 this.parts.length,
             );
+        },
+        // showPartInfoPage is used instead of showPartInfo to browse to page
+        showPartInfoPage() {
+            // this.$router.push('/parts'); // < This is used for direct URLS no params
+            // Below is used to pass params with named URL via code
+            this.$router.push({
+                name: 'Parts',
+                params: {
+                    id: this.selectedPart.id,
+                    partType: this.selectedPart.type,
+                },
+            });
+            // Can also pass name and params to router-link
         },
     },
 };
@@ -106,6 +122,7 @@ export default {
 }
 .part img {
     width: 165px;
+    cursor: pointer;
 }
 .top {
     border-bottom: none;

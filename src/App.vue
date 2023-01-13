@@ -100,9 +100,9 @@ ul {
     margin: auto 32px;
     list-style: none;
 }
-/* Special style for active link */
+/* Built-in vue router style for active links */
 .router-link-active {
     color: white;
 }
-/* OR you can add active-class="class-name" to the router-link element */
+/* OR you can add custom active-class="class-name" to the router-link element */
 </style>
