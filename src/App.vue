@@ -3,12 +3,19 @@
         <nav>
             <ul>
                 <li class="nav-item">
-                    <img
-                        src="./assets/build-a-bot-logo.png"
-                        alt="build a bot logo"
-                        class="logo"
-                    />
-                    Build-a-Bot
+                    <router-link class="nav-link" :to="{ name: 'Home' }" exact>
+                        <img
+                            src="./assets/build-a-bot-logo.png"
+                            alt="build a bot logo"
+                            class="logo"
+                        />
+                        Build-a-Bot
+                    </router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" :to="{ name: 'Build' }" exact>
+                        Build
+                    </router-link>
                 </li>
                 <li class="user-name">
                     {{ user.userName }}
@@ -18,20 +25,17 @@
         </nav>
     </header>
     <main>
-        <RobotBuilder />
+        <router-view />
         <!-- <Search /> -->
     </main>
 </template>
 
 <script>
-// import HomePage from './home/HomePage.vue';
-import RobotBuilder from './build/RobotBuilder.vue';
 // import Search from './search/Search.vue';
 
 export default {
     name: 'App',
     components: {
-        RobotBuilder,
         // Search,
     },
     data() {
@@ -87,9 +91,18 @@ ul {
     vertical-align: middle;
     height: 30px;
 }
+.nav-link {
+    text-decoration: none;
+    color: inherit;
+}
 .user-name {
     height: auto;
     margin: auto 32px;
     list-style: none;
 }
+/* Special style for active link */
+.router-link-active {
+    color: white;
+}
+/* OR you can add active-class="class-name" to the router-link element */
 </style>
