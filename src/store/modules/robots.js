@@ -1,11 +1,12 @@
 import axios from 'axios';
 
 export default {
-    namespace: true,
+    namespaced: true,
     state: {
         // Need default for all values to go in store
         cart: [],
         parts: null,
+        foo: 'robots-foo',
     },
     mutations: {
         // All changes to data must go through here
@@ -41,6 +42,9 @@ export default {
             // Filters cart to find only items where head on sale
             // Then returns the array of items
             return state.cart.filter((item) => item.head.onSale);
+        },
+        foo(state) {
+            return `robots-getter/${state.foo}`;
         },
     },
 };

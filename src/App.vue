@@ -39,6 +39,15 @@
             <!-- <Search /> -->
         </main>
     </div>
+    <div>
+        Root foo: {{ rootFoo }} <br>
+        Robot foo: {{ robotsFoo }} <br>
+        Users foo: {{ usersFoo }} <br>
+        <br>
+        Root getter foo: {{ rootGetterFoo }} <br>
+        Robot getter foo: {{ robotsGetterFoo }} <br>
+        Users getter foo: {{ usersGetterFoo }} <br>
+    </div>
 </template>
 
 <script>
@@ -47,6 +56,24 @@
 export default {
     name: 'App',
     computed: {
+        rootFoo() {
+            return this.$store.state.foo;
+        },
+        robotsFoo() {
+            return this.$store.state.robots.foo;
+        },
+        usersFoo() {
+            return this.$store.state.users.foo;
+        },
+        rootGetterFoo() {
+            return this.$store.getters.foo;
+        },
+        robotsGetterFoo() {
+            return this.$store.getters['robots/foo'];
+        },
+        usersGetterFoo() {
+            return this.$store.getters['users/foo'];
+        },
         cart() {
             // Returns cart to show indicator in menu
             return this.$store.state.robots.cart;
