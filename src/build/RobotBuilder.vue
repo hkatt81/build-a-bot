@@ -121,6 +121,7 @@ export default {
     },
     methods: {
         ...mapActions('robots', ['getParts', 'addRobotToCart']),
+        // ...mapMutations('robots', ['someMutations']), // e.g. map mutations too
         addToCart() {
             const robot = this.selectedRobot;
             const cost = robot.head.cost
