@@ -59,6 +59,8 @@
 
 <script>
 // import availableParts from '../data/parts';
+import { mapActions } from 'vuex';
+
 import PartSelector from './PartSelector.vue';
 // eslint-disable-next-line import/extensions
 import createdHookMixin from './created-hook-mixin.js';
@@ -68,7 +70,8 @@ export default {
     name: 'RobotBuilder',
     created() {
         // Once created, fetch parts via axios (async)
-        this.$store.dispatch('robots/getParts');
+        // this.$store.dispatch('robots/getParts'); // Replaced because of mapActions
+        this.getParts();
     },
     // Route guard with confirmation message
     beforeRouteLeave(to, from, next) {
@@ -117,6 +120,7 @@ export default {
         },
     },
     methods: {
+        ...mapActions('robots', ['getParts', 'addRobotToCart']),
         addToCart() {
             const robot = this.selectedRobot;
             const cost = robot.head.cost
@@ -127,7 +131,9 @@ export default {
             // Adding data to the store
             // this.$store.commit('addRobotToCart', { ...robot, cost });
             // Change to use axiom.post to save to api
-            this.$store.dispatch('robots/addRobotToCart', { ...robot, cost })
+            // this.$store.dispatch('robots/addRobotToCart', { ...robot, cost })
+            // mapActions helper includes dispatch, so don't need above
+            this.addRobotToCart({ ...robot, cost })
                 .then(() => this.$router.push('/cart')); // Use returned promise here to redirect
             // Note: commit mutations but dispatch actions
             this.addedToCart = true;
