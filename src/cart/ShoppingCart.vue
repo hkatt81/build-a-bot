@@ -58,8 +58,10 @@ export default {
             return this.$store.state.robots.cart;
         },
         cartSaleItems() {
-            // Access getters in store
-            return this.$store.getters.cartSaleItems;
+            // Access getters in store (no namespace)
+            // return this.$store.getters.cartSaleItems;
+            // Access getters in store via namespace
+            return this.$store.getters['robots/cartSaleItems'];
         },
     },
 };
