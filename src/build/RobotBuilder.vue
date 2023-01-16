@@ -68,7 +68,7 @@ export default {
     name: 'RobotBuilder',
     created() {
         // Once created, fetch parts via axios (async)
-        this.$store.dispatch('getParts');
+        this.$store.dispatch('robots/getParts');
     },
     // Route guard with confirmation message
     beforeRouteLeave(to, from, next) {
@@ -127,7 +127,7 @@ export default {
             // Adding data to the store
             // this.$store.commit('addRobotToCart', { ...robot, cost });
             // Change to use axiom.post to save to api
-            this.$store.dispatch('addRobotToCart', { ...robot, cost })
+            this.$store.dispatch('robots/addRobotToCart', { ...robot, cost })
                 .then(() => this.$router.push('/cart')); // Use returned promise here to redirect
             // Note: commit mutations but dispatch actions
             this.addedToCart = true;

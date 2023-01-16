@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export default {
+    namespace: true, // important for mutations getters etc. to keep unique
     state: {
         user: null,
     },
