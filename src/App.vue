@@ -46,13 +46,12 @@
         <br>
         Root getter foo: {{ rootGetterFoo }} <br>
         Robot getter foo: {{ robotsGetterFoo }} <br>
-        Users getter foo: {{ usersGetterFoo }} <br>
     </div>
 </template>
 
 <script>
 // import Search from './search/Search.vue';
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 
 export default {
     name: 'App',
@@ -71,15 +70,14 @@ export default {
         // usersFoo() { // Replaced by usersFoo: (state) => state.users.foo
         //     return this.$store.state.users.foo;
         // },
-        rootGetterFoo() {
-            return this.$store.getters.foo;
-        },
-        robotsGetterFoo() {
-            return this.$store.getters['robots/foo'];
-        },
-        usersGetterFoo() {
-            return this.$store.getters['users/foo'];
-        },
+        ...mapGetters({ rootGetterFoo: 'foo' }),
+        ...mapGetters('robots', { robotsGetterFoo: 'foo' }),
+        // rootGetterFoo() { // Replaced by ...mapGetters({ rootGetterFoo: 'foo' }),
+        //     return this.$store.getters.foo;
+        // },
+        // robotsGetterFoo() {  // Replaced by ...mapGetters('robots', { robotsGetterFoo: 'foo' }),
+        //     return this.$store.getters['robots/foo'];
+        // },
         cart() {
             // Returns cart to show indicator in menu
             return this.$store.state.robots.cart;
