@@ -55,7 +55,7 @@ export default {
     computed: {
         cart() {
             // Accessing data from the store
-            return this.$store.state.cart;
+            return this.$store.state.robots.cart;
         },
         cartSaleItems() {
             // Access getters in store

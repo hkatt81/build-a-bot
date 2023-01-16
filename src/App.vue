@@ -49,7 +49,7 @@ export default {
     computed: {
         cart() {
             // Returns cart to show indicator in menu
-            return this.$store.state.cart;
+            return this.$store.state.robots.cart;
         },
     },
     components: {

@@ -101,7 +101,7 @@ export default {
         // Once data is returned from store this is updated
         // add v-if to builder above to only show when data is there
         availableParts() {
-            return this.$store.state.parts;
+            return this.$store.state.robots.parts;
         },
         // Computed class
         saleBorderClass() {
@@ -127,7 +127,8 @@ export default {
             // Adding data to the store
             // this.$store.commit('addRobotToCart', { ...robot, cost });
             // Change to use axiom.post to save to api
-            this.$store.dispatch('addRobotToCart', { ...robot, cost });
+            this.$store.dispatch('addRobotToCart', { ...robot, cost })
+                .then(() => this.$router.push('/cart')); // Use returned promise here to redirect
             // Note: commit mutations but dispatch actions
             this.addedToCart = true;
         },
