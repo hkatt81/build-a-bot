@@ -52,19 +52,25 @@
 
 <script>
 // import Search from './search/Search.vue';
+import { mapState } from 'vuex';
 
 export default {
     name: 'App',
     computed: {
-        rootFoo() {
-            return this.$store.state.foo;
-        },
-        robotsFoo() {
-            return this.$store.state.robots.foo;
-        },
-        usersFoo() {
-            return this.$store.state.users.foo;
-        },
+        ...mapState({
+            rootFoo: 'foo',
+            usersFoo: (state) => state.users.foo,
+        }),
+        ...mapState('robots', { robotsFoo: 'foo' }), // Only namespaced
+        // rootFoo() { // Replaced by rootFoo: 'foo'
+        //     return this.$store.state.foo;
+        // },
+        // robotsFoo() { // Replaced by ...mapState('robots', { robotsFoo: 'foo' })
+        //     return this.$store.state.robots.foo;
+        // },
+        // usersFoo() { // Replaced by usersFoo: (state) => state.users.foo
+        //     return this.$store.state.users.foo;
+        // },
         rootGetterFoo() {
             return this.$store.getters.foo;
         },
