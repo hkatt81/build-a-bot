@@ -25,6 +25,14 @@ export default createStore({
                 .then((result) => commit('updateParts', result.data))
                 .catch(console.error); // Log errors to console
         },
+        addRobotToCart({ commit, state }, robot) {
+            // Creates a new cart array with current cart and robot
+            const cart = [...state.cart, robot];
+            // Saves this to the api
+            axios.post('/api/cart', cart)
+                .then(() => commit('addRobotToCart', robot))
+                .catch(console.error);
+        },
     },
     getters: {
         // Getters are best way to return data after some work is done on it

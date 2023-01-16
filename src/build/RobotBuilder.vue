@@ -125,7 +125,10 @@ export default {
                 + robot.rightArm.cost
                 + robot.base.cost;
             // Adding data to the store
-            this.$store.commit('addRobotToCart', { ...robot, cost });
+            // this.$store.commit('addRobotToCart', { ...robot, cost });
+            // Change to use axiom.post to save to api
+            this.$store.dispatch('addRobotToCart', { ...robot, cost });
+            // Note: commit mutations but dispatch actions
             this.addedToCart = true;
         },
     },
