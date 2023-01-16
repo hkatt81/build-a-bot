@@ -10,6 +10,7 @@ import RobotTorsos from '../parts/RobotTorsos.vue';
 import RobotBases from '../parts/RobotBases.vue';
 import SidebarStandard from '../sidebars/SidebarStandard.vue';
 import SidebarBuild from '../sidebars/SidebarBuild.vue';
+import ShoppingCart from '../cart/ShoppingCart.vue';
 // import Search from '../search/Search.vue';
 
 export default createRouter({
@@ -75,6 +76,11 @@ export default createRouter({
                 const isValidId = Number.isInteger(Number(to.params.id));
                 next(isValidId); // true if id is a number, otherwise false
             },
+        },
+        {
+            path: '/cart',
+            name: 'Cart',
+            component: ShoppingCart,
         },
         // {
         //     path: '/search',

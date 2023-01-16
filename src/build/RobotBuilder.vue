@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div v-if="availableParts" class="content">
     <div class="part-info" id="part-info"></div>
     <div class="preview">
         <CollapsibleSection>
@@ -55,43 +55,21 @@
         />
     </div>
   </div>
-  <div>
-    <!-- <Cart /> -->
-    <div>
-      <h1>Cart</h1>
-      <table>
-        <thead>
-          <tr>
-            <th class="robot-title">
-              Robot
-            </th>
-            <th class="cost">
-              Cost
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(robot, index) in cart" :key="index">
-            <td class="robot-title">{{robot.head.title}}</td>
-            <td class="cost">{{robot.cost}}</td>
-          </tr>
-        </tbody>
-      </table>
-   </div>
-  </div>
-
 </template>
 
 <script>
-import availableParts from '../data/parts';
+// import availableParts from '../data/parts';
 import PartSelector from './PartSelector.vue';
-// import Cart from '../cart/ShoppingCart.vue';
 // eslint-disable-next-line import/extensions
 import createdHookMixin from './created-hook-mixin.js';
 import CollapsibleSection from '../shared/CollapsibleSection.vue';
 
 export default {
     name: 'RobotBuilder',
+    created() {
+        // Once created, fetch parts via axios (async)
+        this.$store.dispatch('getParts');
+    },
     // Route guard with confirmation message
     beforeRouteLeave(to, from, next) {
         if (this.addedToCart) {
@@ -107,7 +85,6 @@ export default {
         return {
             // Initialize and set default for variables
             // Binding to changing data so notice when changes and reloads
-            availableParts,
             addedToCart: false,
             cart: [],
             selectedRobot: {
@@ -121,18 +98,23 @@ export default {
     },
     mixins: [createdHookMixin],
     computed: {
-        // // Computed class
-        // saleBorderClass() {
-        //     return this.selectedRobot.head.onSale ? 'sale-border' : '';
-        // },
-        // // Computed style
-        // headBorderStyle() {
-        //     return {
-        //         border: this.selectedRobot.head.onSale
-        //             ? '3px solid red'
-        //             : ' 3px solid #aaa',
-        //     };
-        // },
+        // Once data is returned from store this is updated
+        // add v-if to builder above to only show when data is there
+        availableParts() {
+            return this.$store.state.parts;
+        },
+        // Computed class
+        saleBorderClass() {
+            return this.selectedRobot.head.onSale ? 'sale-border' : '';
+        },
+        // Computed style
+        headBorderStyle() {
+            return {
+                border: this.selectedRobot.head.onSale
+                    ? '3px solid red'
+                    : ' 3px solid #aaa',
+            };
+        },
     },
     methods: {
         addToCart() {
@@ -142,7 +124,8 @@ export default {
                 + robot.torso.cost
                 + robot.rightArm.cost
                 + robot.base.cost;
-            this.cart.push({ ...robot, cost });
+            // Adding data to the store
+            this.$store.commit('addRobotToCart', { ...robot, cost });
             this.addedToCart = true;
         },
     },
@@ -264,16 +247,9 @@ export default {
     padding: 3px;
     font-size: 16px;
 }
-td,
-th {
-    padding: 5px;
-}
 .robot-title {
     text-align: left;
     padding-right: 200px;
-}
-.cost {
-    text-align: right;
 }
 .preview {
     position: absolute;

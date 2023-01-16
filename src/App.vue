@@ -17,6 +17,12 @@
                         Build
                     </router-link>
                 </li>
+                <li class="nav-item cart">
+                    <router-link class="nav-link" to="/cart" exact>
+                        Cart
+                    </router-link>
+                    <div class="cart-items">{{ cart.length }}</div>
+                </li>
                 <li class="user-name">
                     {{ user.userName }}
                     <button @click="changeUserName()">Change</button>
@@ -40,6 +46,12 @@
 
 export default {
     name: 'App',
+    computed: {
+        cart() {
+            // Returns cart to show indicator in menu
+            return this.$store.state.cart;
+        },
+    },
     components: {
         // Search,
     },
@@ -119,5 +131,21 @@ ul {
     background-color: #aaa;
     width: 100px;
     min-height: 300px;
+}
+.nav-item.cart {
+    position: relative;
+    margin-left: auto;
+    border-right: none;
+}
+.cart-items {
+    position: absolute;
+    top: -5px;
+    right: -9px;
+    font-size: 18px;
+    width: 20px;
+    text-align: center;
+    display: inline-block;
+    border-radius: 100px;
+    background-color: mediumseagreen;
 }
 </style>
