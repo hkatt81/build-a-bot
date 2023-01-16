@@ -39,14 +39,15 @@
             <!-- <Search /> -->
         </main>
     </div>
-    <div>
+    <!-- state between store module demo -->
+    <!-- <div>
         Root foo: {{ rootFoo }} <br>
         Robot foo: {{ robotsFoo }} <br>
         Users foo: {{ usersFoo }} <br>
         <br>
         Root getter foo: {{ rootGetterFoo }} <br>
         Robot getter foo: {{ robotsGetterFoo }} <br>
-    </div>
+    </div> -->
 </template>
 
 <script>
