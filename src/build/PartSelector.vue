@@ -7,7 +7,8 @@
         <button @click="selectNextPart()" class="next-selector"></button>
         <!--<span v-pin:position.top.right class="sale" v-show="selectedPart.onSale">Sale!</span>-->
         <span
-            v-pin="{ bottom: '10px', right: '5px' }"
+            @click="pinPadding='30px'"
+            v-pin="{ bottom: pinPadding, right: pinPadding }"
             class="sale"
             v-show="selectedPart.onSale">
             Sale!
@@ -56,7 +57,10 @@ export default {
         },
     },
     data() {
-        return { selectedPartIndex: 0 };
+        return {
+            selectedPartIndex: 0,
+            pinPadding: '10px',
+        };
         // return { selectedPartIndex: 0, showPartInfo: false };
         // showPartInfo is used with teleport to show element on screen
     },
