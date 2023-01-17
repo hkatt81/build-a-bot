@@ -34,3 +34,7 @@ npm run build -- --mode=staging
 npm run build -- --mode=development
 
 Must have VUE_APP prefix or NODE_ENV
+
+## Vue Inspect to generate webpack.config.js
+
+vue inspect --mode=production > webpack.config.js (CLI not working for some reason at the moment)
