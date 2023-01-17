@@ -25,7 +25,7 @@
   </template>
 
 <script>
-import pinDirective from '../shared/pin-directive';
+// import pinDirective from '../shared/pin-directive';
 // import availableParts from '../data/parts';
 
 // const parts = availableParts.heads;
@@ -41,9 +41,9 @@ function getNextValidIndex(index, length) {
 }
 
 export default {
-    directives: {
-        pin: pinDirective,
-    },
+    // directives: {
+    //     pin: pinDirective,
+    // },
     // Inject receives data from parent provide, so can be used
     inject: ['user'],
     props: {
