@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-// This is shorthand for beforeMount and updated lifecycle hooks
+// This is shorthand for beforeMount and updated lifecycle hooks as per below
 export default function (element, binding) {
     Object.keys(binding.value).forEach((individualPosition) => {
         element.style[individualPosition] = binding.value[individualPosition];
