@@ -50,13 +50,13 @@
   </template>
 
 <script>
-import currencyFilter from '../shared/currency-filter';
+// import currencyFilter from '../shared/currency-filter';
 
 export default {
     name: 'Cart',
-    methods: {
-        currency: currencyFilter,
-    },
+    // methods: {
+    //     currency: currencyFilter,
+    // },
     computed: {
         cart() {
             // Accessing data from the store
